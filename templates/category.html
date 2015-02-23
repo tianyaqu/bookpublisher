@@ -1,0 +1,66 @@
+{% extends "_base.html" %}
+
+{% block navs %}
+{% module Template("_navs.html", menu='category') %}
+{% end %}
+
+{% block pager_m %}
+{% module Template("_pager_m.html",curIndex=curIndex,lastIndex=total/itemsPerPage+1) %}
+{% end %}
+
+{% block title %}{{ title }}{% end %}
+
+{% block main %}
+<div class="row">
+    <div id="left-panel" class="col-sm-1">
+    </div>
+    <div id="mid-panel" class="col-sm-10 canvas-main">
+        <table class="table table-condensed table-striped table-hover"> 
+        <thead>
+            <tr>
+                <th>name</th>
+                <th><span class="glyphicon glyphicon-hdd" ></span> size</th>
+                <th><span class="glyphicon glyphicon-time" ></span> time</th>
+                <th><span class="glyphicon glyphicon-magnet" ></span> link</th>
+                <th><span ></span></th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for item in btList %}
+            <tr>
+                <td ><div class="torrent-item" style="word-break:break-all;">
+                {{ item['name'] }}
+                </div>
+                </td>
+                <td ><div class="torrent-item-extra">
+                {{item['size'].replace(' ','')}}
+                </div>
+                </td>
+                <td ><div class="torrent-item-extra">
+                {{item['time'].replace(' ','')}}
+                </div>
+                </td>
+                <td ><div class="torrent-item-link">
+                <a id ="sb" data-message="magnet" href="{{item['url']}}" data-toggle="tooltip" title="right click to copy the link">
+                    <span class="glyphicon glyphicon-magnet"></span>
+                </a>
+                </div>
+                </td>
+                <td ><div class="torrent-item-link">
+                <a id = "sb" href="javascript:void(0)" data-toggle="tooltip" data-placement="left" title="举报该链接"><span class="glyphicon glyphicon-exclamation-sign"></span></a>
+                </div>
+                </td>
+            </tr>
+            {% end %}
+        </tbody>
+        </table> 
+    </div>
+    <div id="right-panel" class="col-sm-1">
+    </div>
+</div> <!--row-->
+{% end %}
+
+{% block js_foot %}
+<script src="http://libs.baidu.com/jquery/1.9.0/jquery.js"></script>
+<script src="/static/js/bootstrap.js"></script>
+{% end %}

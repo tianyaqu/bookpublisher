@@ -1,0 +1,14 @@
+{% extends "_base.html" %}
+
+{% block navs %}
+{% module Template("_navs.html", menu='home') %}
+{% end %}
+
+{% block title %}{{ title }} - {{ handler.get_from_conf('site') }} {% end %}
+
+{% block js_foot %}
+<script src="http://libs.baidu.com/jquery/1.9.0/jquery.js"></script>
+<script src="/static/js/bootstrap.js"></script>
+<script>
+</script>
+{% end %}

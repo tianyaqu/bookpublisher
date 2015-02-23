@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta http-equiv="Content-type" content="text/html" charset="utf-8">
+        <link href="static/css/bootstrap.css" rel="stylesheet">
+        <link href="static/css/default.css" rel="stylesheet">
+        <title>{% block title %}{% end %}</title>
+        <!-- left for seo -->
+        <!--
+        <meta name="keywords" content="">
+        <meta name="description" content"">
+        -->
+    </head>
+
+    <body>
+        <div class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+            <div class="container">
+            <div class="navbar-header">
+                <a href="/" class="navbar-brand">{{ handler.get_from_conf('site') }}</a>
+            </div>
+            <div class="collapse navbar-collapse">
+            <ul class="nav navbar-nav">
+                {% block navs %}{% end %}
+            </ul>
+
+            <ul class="nav navbar-nav navbar-right">
+            {% if not handler.current_user %}
+                <li><a href="/login" class="navbar-link"><span class="glyphicon glyphicon-user"></span> Login/Rigister</a></li>
+            {% else %}
+                <li>
+                <div class="dropdown">
+                    <button class="btn btn-default dropdown-toggle" type="button" data-toggle="dropdown">
+                        <span class="glyphicon glyphicon-user"></span>
+                        {{ handler.current_user['name'] }}
+                        <span class="caret"></span>
+                    </button>
+                    <ul class="dropdown-menu" role="menu">
+                        <li><a href="/settings"><span class="glyphicon glyphicon-edit"></span>  设置</a></li>
+                        <li><a href="/logout"><span class="glyphicon glyphicon-off"></span>  退出</a></li>
+                    </ul>
+                </div>
+                </li>
+            {% end %}
+            </ul>
+            <form action="/search" class="navbar-form navbar-right" role="search">
+            <div class="form-group">
+                <input type="search" name="key" style="margin:0;border-radius:15px 0 0 15px;width:140px;color:#666" class="form-control" placeholder="keywords"/>
+                <button type="submit" style="border-radius:0 15px 15px 0" class="btn btn-primary"><span class="glyphicon glyphicon-search"></span></button>
+            </div>
+            </form>
+            </div> <!--collapse-->
+            </div> <!--container-->
+        </div> <!--navbar -->
+
+        <div class="container">
+            {% block main %} {% end %}
+            {% block pager_m %} {% end %}
+        </div> <!--maincontent-->
+        <div class="navbar-fixed-bottom site-footer">
+        <p>Copyright &copy; 2014 tianyaqu</p>
+        </div>
+        {% block js_foot %} {% end %}
+    </body>
+</html>

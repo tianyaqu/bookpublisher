@@ -1,0 +1,38 @@
+{% extends "_base.html" %}
+
+{% block navs %}
+{% module Template("_navs.html", menu='none') %}
+{% end %}
+
+{% block title %}登录 - {{ handler.get_from_conf('site') }}{% end %}
+
+{% block main %}
+<div class="row">
+    <form method="POST" class="form card-main">
+        <input type="hidden" name="_xsrf" value="qcli97fkfloaxrgbc1f4">
+        <h4 class="sign-head">请登录</h4>
+        <div class="control-group">
+            <div class="controls">
+                <input id="email" maxlength="50" name="email" placeholder="user@example.com" type="text" value>
+            </div>
+        </div>
+
+        <div class="control-group">
+            <div class="controls">
+                <input id="password" maxlength="50" name="password" placeholder="Password" type="password" value>
+            </div>
+        </div>
+
+        <div class="control-group">
+            <label class="checkbox">
+                <input id="remember" name="remember" type="checkbox" value="y">记住我
+            </label>
+            <button class="btn btn-large btn-primary" type="submit">Login</button>
+            <a href="/forget_passwd">找回密码</a>
+            <a href="/register">注册账号</a>
+        </div>
+    </form>
+</div>
+
+
+{% end %}

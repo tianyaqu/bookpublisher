@@ -1,0 +1,24 @@
+<div class="row">
+    <div id="left-panel" class="col-sm-1">
+    </div>
+    <div id="mid-panel" class="col-sm-10 canvas-main">
+        <ul class="pagination">
+            <li {% if curIndex == 1 %} class="disabled" {% end %}><a href="{% raw handler.makeurl(handler.merge_query({'page':curIndex-1})) %}">&laquo;</a></li>
+            {% for i in range(2) %}
+                <li {% if curIndex == i+1 %} class="active"{% end%}><a href="{% raw handler.makeurl(handler.merge_query({'page':i+1})) %}">{{i+1}}</a></li>
+            {% end %}
+            <li {% if curIndex < 10 %} class="hidden" {% end %}><span>...</span></li>
+            {% for i in range(-3,4) %}
+                {% if curIndex+i>2 and curIndex+i<lastIndex-1 %}
+                <li {% if curIndex == curIndex+i %} class="active"{% end%}><a href="{% raw handler.makeurl(handler.merge_query({'page':curIndex+i})) %}">{{curIndex+i}}</a></li>
+                {% end %}
+            {% end %}
+            <li {% if curIndex > lastIndex-10 %} class="hidden" {% end %}><span>...</span></li>
+            {% for i in range(2) %}
+                <li {% if curIndex == lastIndex-1+i %} class="active"{% end%}><a href="{% raw handler.makeurl(handler.merge_query({'page':lastIndex+i-1})) %}">{{lastIndex-1+i}}</a></li>
+            {% end %}
+            <li {% if curIndex == lastIndex %} class="disabled" {% end %}><a href="{% raw handler.makeurl(handler.merge_query({'page':curIndex+1})) %}">&raquo;</a></li>
+        </ul>
+    </div>
+    <div id="right-panel" class="col-sm-1">
+    </div>

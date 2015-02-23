@@ -1,0 +1,20 @@
+[tianyaqu@baidu.com]
+name = tianyaqu
+auid = xyz
+salt = 222
+pass = 1234222
+token = welcome
+
+[v@q.com]
+name = vvv
+auid = xyz
+salt = 111
+pass = 1234111
+token = youare
+
+[admin]
+name = admin
+auid = ccc
+salt = fff
+pass = adminfff
+token = fffk
